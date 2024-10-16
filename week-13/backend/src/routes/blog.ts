@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client/edge";
+import { PrismaClient } from "@prisma/client";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { Hono } from "hono";
 import { verify } from "hono/jwt";
@@ -25,7 +25,7 @@ bookRouter.use(async (c, next) => {
 		c.status(401);
 		return c.json({ error: "unauthorized" });
 	}
-	c.set('userId', payload.id);
+    c.set('userId', payload.id);
 	await next()
 });
 
